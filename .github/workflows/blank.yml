@@ -1,6 +1,5 @@
-name: Print Message
+name: Blank Workflow
 
-# Triggers
 on:
   workflow_dispatch:    # Manual trigger
   repository_dispatch:  # Triggered externally (like from n8n)
@@ -10,4 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message
-        run: echo "I am from n8n"
+        run: |
+          # Check if a message was passed via client_payload
+          if [ -n "${{ github.event.client_payload.message }}" ]; then
+            echo "${{ github.event.client_payload.message }}"
+          else
+            echo "I am from n*n"
+          fi
