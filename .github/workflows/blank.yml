@@ -1,0 +1,13 @@
+name: Print Message
+
+# Triggers
+on:
+  workflow_dispatch:    # Manual trigger
+  repository_dispatch:  # Triggered externally (like from n8n)
+
+jobs:
+  say-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "I am from n8n"
